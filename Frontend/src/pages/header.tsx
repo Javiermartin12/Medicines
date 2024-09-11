@@ -2,7 +2,8 @@ import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 
 const options = ["Pomodoro", "Short Break", "Long Break"];
-export const header = ({ item }) => {
+
+export default function Header() {
   return (
     <View>
       {options.map((item, index) => (
@@ -12,6 +13,4 @@ export const header = ({ item }) => {
       ))}
     </View>
   );
-};
-
-export default header;
+}
