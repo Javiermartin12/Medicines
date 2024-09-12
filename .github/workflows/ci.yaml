@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: mcos-latest
 
     steps:
       - name: Checkout code
@@ -22,11 +22,14 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
+        working-directory: ./Pomodoro
         run: npm install
 
       - name: Run Linting
+        working-directory: ./Pomodoro
         run: npm run lint
 
       - name: Build App
+        working-directory: ./Pomodoro
         run: |
           npx react-native run-ios --configuration Release
