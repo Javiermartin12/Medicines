@@ -1,9 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import Header from "./src/components/Header";
 
-export default function App() {
+const App = () => {
   const [isWorking, setIsWorking] = useState(false);
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "LONG");
@@ -21,7 +21,8 @@ export default function App() {
       </View>
     </SafeAreaView>
   );
-}
+};
+export default App;
 
 const styles = StyleSheet.create({
   container: {
