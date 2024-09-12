@@ -22,8 +22,8 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        working-directory: ./Pomodoro --legacy-peer-deps
-        run: npm install
+        working-directory: ./Pomodoro
+        run: npm install --legacy-peer-deps
 
       - name: Run Linting
         working-directory: ./Pomodoro
