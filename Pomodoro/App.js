@@ -11,8 +11,13 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Text>Pomodoro</Text>
+        <Text>{time}</Text>
         <StatusBar style="auto" />
-        <Header time={time} />
+        <Header
+          currentTime={currentTime}
+          setCurrentTime={setCurrentTime}
+          setTime={setTime}
+        />
       </View>
     </SafeAreaView>
   );
