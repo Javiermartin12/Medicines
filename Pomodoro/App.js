@@ -21,13 +21,20 @@ const App = () => {
   const [isActive, setIsActive] = useState(false);
 
   function handlerStartStop() {
+    playSound();
     setIsActive(!isActive);
   }
 
   async function playSound() {
-    const { sound } = await Audio.Sound.createAsync(
-      require("./assets/click.mp3")
-    );
+    try {
+      const { sound } = await Audio.Sound.createAsync(
+        console.log("Sound path:", require("./assets/click.wav"))
+      );
+
+      await sound.playAsync();
+    } catch (error) {
+      console.error("Error loading or playing sound:", error);
+    }
   }
   return (
     <SafeAreaView
