@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Header from "./src/components/Header";
 import Timer from "./src/components/Timer";
+import { Audio } from "expo-av";
 
 const colors = ["#F7DC6F", "lightgray", "lightgreen"];
 
@@ -18,6 +19,16 @@ const App = () => {
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "LONG");
   const [isActive, setIsActive] = useState(false);
+
+  function handlerStartStop() {
+    setIsActive(!isActive);
+  }
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("./assets/click.mp3")
+    );
+  }
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors[currentTime] }]}
@@ -37,7 +48,7 @@ const App = () => {
           setTime={setTime}
         />
         <Timer time={time} />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={handlerStartStop} style={styles.button}>
           <Text style={{ color: "aliceblue", fontWeight: "bold" }}>
             {isActive ? "STOP" : "START"}
           </Text>
