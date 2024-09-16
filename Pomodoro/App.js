@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, SafeAreaView, Platform } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Platform,
+  TouchableOpacity,
+} from "react-native";
 import Header from "./src/components/Header";
 import Timer from "./src/components/Timer";
 
@@ -10,6 +17,7 @@ const App = () => {
   const [isWorking, setIsWorking] = useState(false);
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "LONG");
+  const [isActive, setIsActive] = useState(false);
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors[currentTime] }]}
@@ -29,6 +37,11 @@ const App = () => {
           setTime={setTime}
         />
         <Timer time={time} />
+        <TouchableOpacity style={styles.button}>
+          <Text style={{ color: "aliceblue", fontWeight: "bold" }}>
+            {isActive ? "STOP" : "START"}
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -39,5 +52,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+  },
+  button: {
+    backgroundColor: "#333333",
+    padding: 15,
+    marginTop: 15,
+    alignItems: "center",
+    borderRadius: 15,
   },
 });
