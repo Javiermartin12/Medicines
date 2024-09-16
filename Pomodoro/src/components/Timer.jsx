@@ -2,7 +2,9 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 function Timer({ time }) {
-  const formattedTime = `${Math.floor(time / 60)}`;
+  const formattedTime = `${Math.floor(time / 60)
+    .toString()
+    .padStart(2, "0")}: ${(time % 60).toString().padStart(2, "0")}`;
   return (
     <View style={style.container}>
       <Text style={style.time}>{formattedTime}</Text>
