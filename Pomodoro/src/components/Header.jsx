@@ -13,10 +13,13 @@ function Header({ setTime, currentTime, setCurrentTime }) {
       {options.map((items, index) => (
         <TouchableOpacity
           key={index}
-          style={styles.items}
+          style={[
+            styles.items,
+            currentTime !== index && { borderColor: "transparent" },
+          ]}
           onPress={() => handlePress(index)}
         >
-          <Text>{items}</Text>
+          <Text style={{ fontWeight: "bold" }}>{items}</Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -29,7 +32,10 @@ const styles = StyleSheet.create({
   items: {
     width: "33%",
     borderWidth: 2,
-    borderColor: "black",
-    padding: 3,
+    borderColor: "white",
+    padding: 5,
+    alignItems: "center",
+    marginVertical: 20,
+    borderRadius: 10,
   },
 });
