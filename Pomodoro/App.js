@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Platform } from "react-native";
 import Header from "./src/components/Header";
+import Timer from "./src/components/Timer";
 
-const colors = ["#F7DC6F", "A2D9CE", "D7BDE2"];
+const colors = ["#F7DC6F", "lightgray", "lightgreen"];
 
 const App = () => {
   const [isWorking, setIsWorking] = useState(false);
@@ -14,14 +15,20 @@ const App = () => {
       style={[styles.container, { backgroundColor: colors[currentTime] }]}
     >
       <StatusBar style="auto" />
-      <View style={styles.container}>
+      <View
+        style={{
+          flex: 1,
+          paddingHorizontal: 15,
+          paddingTop: Platform.OS === "android" && 30,
+        }}
+      >
         <Text>Pomodoro</Text>
-        <Text>{time}</Text>
         <Header
           currentTime={currentTime}
           setCurrentTime={setCurrentTime}
           setTime={setTime}
         />
+        <Timer time={time} />
       </View>
     </SafeAreaView>
   );
