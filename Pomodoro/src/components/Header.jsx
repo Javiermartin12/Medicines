@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 const options = ["Pomodoro", "Short Break", "Long Break"];
+
 function Header({ setTime, currentTime, setCurrentTime }) {
   function handlePress(index) {
     const newTime = index === 0 ? 25 : index === 1 ? 5 : 10;
