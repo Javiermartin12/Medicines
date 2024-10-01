@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "my-new-project",
-    "slug": "my-new-project",
+    "name": "Pomodoro",
+    "displayName": "Pomodoro",
+    "entryPoint": "./src/App.js",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
