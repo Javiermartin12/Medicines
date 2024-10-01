@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Timer from "./components/Timer";
 import { Audio } from "expo-av";
 import clickStart from "./assets/click.wav";
+import { registerRootComponent } from "expo";
 
 const colors = ["#F7DC6F", "lightgray", "lightgreen"];
 
@@ -20,19 +21,27 @@ const App = () => {
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "LONG");
   const [isActive, setIsActive] = useState(false);
-  const audioRef = useRef(null);
+  const [sound, setSound] = useState();
+
+  async function playSound() {
+    const { sound } = Audio.Sound.createAsync(clickStart);
+    setSound(sound);
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   function handlerStartStop() {
     playSound();
     setIsActive(!isActive);
   }
 
-  useEffect(() => {
-    audioRef.current = new Audio(clickStart);
-  }, []);
-  const playSound = () => {
-    audioRef.current.play();
-  };
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors[currentTime] }]}
@@ -76,3 +85,4 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
 });
+registerRootComponent(App);
