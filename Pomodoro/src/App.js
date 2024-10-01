@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -21,8 +21,25 @@ const App = () => {
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "LONG");
   const [isActive, setIsActive] = useState(false);
 
+  useEffect(() => {
+    let interval = null;
+    if (isActive) {
+      interval = setInterval(() => {
+        setTime(time - 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+    if (time === 0) {
+      setIsActive(false);
+      setIsWorking((prev) => !prev);
+      setTime(isWorking ? 300 : 1500);
+    }
+    return () => clearInterval(interval);
+  }, [isActive, time]);
+
   const handlerStartStop = () => {
-    setIsActive((prev) => !prev);
+    setIsActive(!isActive);
   };
 
   return (
