@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,8 +10,7 @@ import {
 } from "react-native";
 import Header from "./components/Header";
 import Timer from "./components/Timer";
-import { Audio } from "expo-av";
-import clickStart from "./assets/click.wav";
+
 import { registerRootComponent } from "expo";
 
 const colors = ["#F7DC6F", "lightgray", "lightgreen"];
@@ -21,26 +20,10 @@ const App = () => {
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "LONG");
   const [isActive, setIsActive] = useState(false);
-  const [sound, setSound] = useState();
 
-  async function playSound() {
-    const { sound } = Audio.Sound.createAsync(clickStart);
-    setSound(sound);
-    await sound.playAsync();
-  }
-
-  useEffect(() => {
-    return sound
-      ? () => {
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
-
-  function handlerStartStop() {
-    playSound();
-    setIsActive(!isActive);
-  }
+  const handlerStartStop = () => {
+    setIsActive((prev) => !prev);
+  };
 
   return (
     <SafeAreaView
