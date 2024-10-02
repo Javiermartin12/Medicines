@@ -32,8 +32,8 @@ jobs:
       - name: Build App for iOS
         working-directory: ./ios
         run: |
-          xcodebuild -workspace YourApp.xcworkspace \  # Reemplaza con el nombre real
-            -scheme YourApp \  # Reemplaza con el nombre real
+          xcodebuild -workspace YourApp.xcworkspace \  
+            -scheme YourApp \  
             -configuration Release \
             -sdk iphoneos \
             -archivePath $PWD/build/YourApp.xcarchive \
