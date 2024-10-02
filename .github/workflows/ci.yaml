@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - master # Cambia esto si tu rama por defecto es otra
   pull_request:
     branches:
-      - master
+      - master # Cambia esto si tu rama por defecto es otra
 
 jobs:
   build:
@@ -22,15 +22,15 @@ jobs:
           node-version: "17"
 
       - name: Install dependencies
-        working-directory: ./Pomodoro # Usa esta ruta
+        working-directory: ./
         run: npm install --legacy-peer-deps
 
       - name: Install CocoaPods dependencies
-        working-directory: ./Pomodoro/ios # Ruta a la carpeta ios dentro de Pomodoro
+        working-directory: ./ios
         run: pod install
 
       - name: Build App for iOS
-        working-directory: ./Pomodoro/ios # Ruta a la carpeta ios dentro de Pomodoro
+        working-directory: ./ios
         run: |
           xcodebuild -workspace YourApp.xcworkspace \  # Reemplaza con el nombre real
             -scheme YourApp \  # Reemplaza con el nombre real
