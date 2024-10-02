@@ -25,7 +25,5 @@ jobs:
         working-directory: ./
         run: npm install --legacy-peer-deps
 
-      - name: Build App for iOS
-        working-directory: ./src
-        run: |
-          xcodebuild -workspace TuApp.xcworkspace -scheme TuApp build
+      - name: Build App
+        run: npm run build
