@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "17"
+
+      - name: Install dependencies
+        working-directory: ./Pomodoro
+        run: npm install --legacy-peer-deps
+
+      - name: Install CocoaPods dependencies
+        working-directory: ./Pomodoro/ios
+        run: pod install
+
+      - name: Build App for iOS
+        working-directory: ./Pomodoro
+        run: |
+          xcodebuild -workspace ios/YourApp.xcworkspace \
+            -scheme YourApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath $PWD/build/YourApp.xcarchive \
+            archive
