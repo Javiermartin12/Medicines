@@ -7,8 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "build": "npm run ios"
   },
   "jest": {
     "preset": "jest-expo",
