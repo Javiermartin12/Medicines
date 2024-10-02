@@ -22,18 +22,18 @@ jobs:
           node-version: "17"
 
       - name: Install dependencies
-        working-directory:
+        working-directory: ./Pomodoro # Usa esta ruta
         run: npm install --legacy-peer-deps
 
       - name: Install CocoaPods dependencies
-        working-directory:
+        working-directory: ./Pomodoro/ios # Ruta a la carpeta ios dentro de Pomodoro
         run: pod install
 
       - name: Build App for iOS
-        working-directory:
+        working-directory: ./Pomodoro/ios # Ruta a la carpeta ios dentro de Pomodoro
         run: |
-          xcodebuild -workspace ios/YourApp.xcworkspace \
-            -scheme YourApp \
+          xcodebuild -workspace YourApp.xcworkspace \  # Reemplaza con el nombre real
+            -scheme YourApp \  # Reemplaza con el nombre real
             -configuration Release \
             -sdk iphoneos \
             -archivePath $PWD/build/YourApp.xcarchive \
