@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - master # Cambia esto si tu rama por defecto es otra
+      - master
   pull_request:
     branches:
-      - master # Cambia esto si tu rama por defecto es otra
+      - master
 
 jobs:
   build:
