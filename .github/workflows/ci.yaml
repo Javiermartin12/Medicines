@@ -25,10 +25,6 @@ jobs:
         working-directory: ./
         run: npm install --legacy-peer-deps
 
-      - name: Install CocoaPods dependencies
-        working-directory: ./ios
-        run: pod install
-
       - name: Build App for iOS
         working-directory: ./ios
         run: |
